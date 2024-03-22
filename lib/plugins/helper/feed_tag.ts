@@ -31,6 +31,7 @@ function makeFeedTag(this: LocalsType, path?: string, options: Options = {}, con
   }
 
   if (configFeed) {
+    
     if (configFeed.type && configFeed.path) {
       if (typeof configFeed.type === 'string') {
         return `<link rel="alternate" href="${url_for.call(this, configFeed.path)}" title="${title}" type="application/${feedFn(configFeed.type)}+xml">`;

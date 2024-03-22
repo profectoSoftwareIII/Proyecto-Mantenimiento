@@ -79,16 +79,7 @@ function processPage(ctx: Hexo, file: _File) {
     }
 
     if (data.permalink) {
-      data.path = data.permalink;
-      data.permalink = undefined;
-
-      if (data.path.endsWith('/')) {
-        data.path += 'index';
-      }
-
-      if (!extname(data.path)) {
-        data.path += `.${output}`;
-      }
+      updateDataPathAddress(data, output);
     } else {
       data.path = `${path.substring(0, path.length - extname(path).length)}.${output}`;
     }
@@ -106,6 +97,19 @@ function processPage(ctx: Hexo, file: _File) {
 
     return Page.insert(data);
   });
+
+  function updateDataPathAddress(data: any, output: string) {
+    data.path = data.permalink;
+    data.permalink = undefined;
+
+    if (data.path.endsWith('/')) {
+      data.path += 'index';
+    }
+
+    if (!extname(data.path)) {
+      data.path += `.${output}`;
+    }
+  }
 }
 
 function processAsset(ctx: Hexo, file: _File) {
