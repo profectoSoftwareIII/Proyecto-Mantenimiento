@@ -5,9 +5,14 @@ categories:
   - Sports
   - Baseball
 tags:
-  - Injury
-  - Fight
-  - Shocking
+  - Aca
+  - Baca
+  - Taca
+  - Ácido
+  - Casa
+  - Óptimo
+  - Átomo
+
 ---
 
 {% raw %}

@@ -77,4 +77,13 @@ export = function(ctx: Hexo) {
       {name: '--pretty', desc: 'Prettify JSON output'}
     ]
   }, require('./render'));
+
+  //Metodos para pruebas de plugins
+  console.register('test', 'Test a plugin.', {
+    usage: '<plugin>',
+    arguments: [
+      {name: 'plugin', desc: 'Plugin name.'}
+    ]
+  }, require('./config'));
+
 }
