@@ -31,19 +31,7 @@ export = (ctx: Hexo): (data: RenderData) => void => {
       let lang: string, caption: string;
 
       if (args) {
-        const match = rAllOptions.exec(args) || rLangCaption.exec(args);
-
-        if (match) {
-          lang = match[1];
-
-          if (match[2]) {
-            caption = `<span>${match[2]}</span>`;
-
-            if (match[3]) {
-              caption += `<a href="${match[3]}">${match[4] ? match[4] : 'link'}</a>`;
-            }
-          }
-        }
+        ({ lang, caption } = match_html(args, lang, caption));
       }
 
       // PR #3765
@@ -77,5 +65,22 @@ export = (ctx: Hexo): (data: RenderData) => void => {
         + '</hexoPostRenderCodeBlock>'
         + end;
     });
+
+    function match_html(args: any, lang: string, caption: string) {
+      const match = rAllOptions.exec(args) || rLangCaption.exec(args);
+
+      if (match) {
+        lang = match[1];
+
+        if (match[2]) {
+          caption = `<span>${match[2]}</span>`;
+
+          if (match[3]) {
+            caption += `<a href="${match[3]}">${match[4] ? match[4] : 'link'}</a>`;
+          }
+        }
+      }
+      return { lang, caption };
+    }
   };
 };
